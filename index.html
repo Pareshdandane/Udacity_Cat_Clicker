@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>CLICK CAT</title>
+</head>
+<body>
+	<p><h3 id="nameHolder"><h3>
+		<img id ='imageHolder' width="400" height="400">
+		<h2 id='countHolder'>
+	</p>
+
+</body>
+
+<script type="text/javascript">
+var catNames = ['CAT1','CAT2','CAT3'];
+var catImages=['CAT1.jpg','CAT2.jpg','CAT3.jpg'];
+var catClickCount=[0,0,0]
+
+for(var i =0; i<catNames.length; i++){
+	var name = catNames[i];
+	var image = catImages[i];
+	var count = catClickCount[i];	
+	var elem = document.createElement('li');
+	elem.textContent=name;
+	document.body.appendChild(elem);
+	elem.addEventListener('click',(function(Cname,Cimage,Ccount){
+		Ccount+=1;
+		return function(){
+   		document.getElementById("imageHolder").src=Cimage;
+   		document.getElementById("nameHolder").innerHTML=Cname;
+   		document.getElementById("countHolder").innerHTML=Ccount;
+
+		};
+	})(name,image,count));
+	
+}
+</script>
+</html>
