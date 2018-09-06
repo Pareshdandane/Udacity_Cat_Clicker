@@ -14,7 +14,7 @@
 <script type="text/javascript">
 var catNames = ['CAT1','CAT2','CAT3'];
 var catImages=['CAT1.jpg','CAT2.jpg','CAT3.jpg'];
-var catClickCount=[0,0,0]
+var catClickCount=[0,0,0]; //counter variable for each image.
 
 for(var i =0; i<catNames.length; i++){
 	var name = catNames[i];
@@ -23,16 +23,17 @@ for(var i =0; i<catNames.length; i++){
 	var elem = document.createElement('li');
 	elem.textContent=name;
 	document.body.appendChild(elem);
-	elem.addEventListener('click',(function(Cname,Cimage,Ccount){
-		Ccount+=1;
+	//closure function keep counter Updated
+	catClickCount[i] = elem.addEventListener('click',(function(cName,cImage,cCount){
+		
 		return function(){
-   		document.getElementById("imageHolder").src=Cimage;
-   		document.getElementById("nameHolder").innerHTML=Cname;
-   		document.getElementById("countHolder").innerHTML=Ccount;
-
-		};
+		document.getElementById("imageHolder").src=cImage;
+   		document.getElementById("nameHolder").innerHTML=cName;
+   		document.getElementById("countHolder").innerHTML=cCount;
+   		return cCount+=1;
+   		};
 	})(name,image,count));
-	
+
 }
 </script>
 </html>
